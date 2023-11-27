@@ -1,5 +1,8 @@
 var button = document. getElementById("enter");
 var input = document.getElementById("userinput");
-button. addEventListener("click", function() {
-console. log("click is working");
-}); 
+
+
+//crear una funcion para que el input no este vacio 
+function inputLength() {    
+    return input.value.length;
+}
