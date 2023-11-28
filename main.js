@@ -1,8 +1,8 @@
-var button = document. getElementById("enter");
-var input = document.getElementById("userinput");
-
-
-//crear una funcion para que el input no este vacio 
-function inputLength() {    
-    return input.value.length;
-}
+input.addEventListener("keydown", function (event) {
+    if (input.value.length > 0 && event.key === "Enter") {
+        var li = document.createElement("li");
+        li.appendChild(document.createTextNode(input.value));
+        ul.appendChild(li);
+        input.value = "" ;
+    }
+})
