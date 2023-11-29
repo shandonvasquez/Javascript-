@@ -1,0 +1,28 @@
+h1 {
+  color: #bf3b3b;
+  font-size: 36px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 7px;
+  margin-bottom: 30px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  align-content: flex-start;
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
+
+ul {
+  margin: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+li {
+  margin: 3px;
+}
