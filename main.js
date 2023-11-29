@@ -1,34 +1,45 @@
-// We are going to create the variables that will be used in the functions below
 var button = document.getElementById("enter");
 var input = document.getElementById("userinput");
 var ul = document.querySelector("ul");
-//this function returns the length of the input value
 
 function inputLength() {
     return input.value.length;
 }
-//this function creates a list element and appends it to the ul element in the html file
 
 function createListElement() {
     var li = document.createElement("li");
-    li.appendChild(document.createTextNode(input.value));
+    var deleteButton = document.createElement("button"); // Creating a delete button
+    deleteButton.appendChild(document.createTextNode("Remove")); // Text for the delete button
+    deleteButton.classList.add("remove"); // Adding a class for styling
+    deleteButton.addEventListener("click", removeItem); // Adding click event to the delete button
+    li.appendChild(document.createTextNode(input.value + "    "));
+    li.appendChild(deleteButton); // Appending the delete button to the list item
     ul.appendChild(li);
-    input.value = ""; // Corregido el signo "=" en lugar de "-"
+    input.value = "";
 }
-//this function adds a list element after the click event   
 
 function addListAfterClick() {
     if (inputLength() > 0) {
         createListElement();
     }
 }
-//this function adds a list element after the keypress event
+
 function addListAfterKeypress(event) {
     if (inputLength() > 0 && event.keyCode === 13) {
         createListElement();
     }
 }
 
-//Event listeners for the click and keypress events
+function removeItem() {
+    this.parentElement.remove();
+}
+
 button.addEventListener("click", addListAfterClick);
 input.addEventListener("keypress", addListAfterKeypress);
+
+// Event listener for newly added items for removal
+ul.addEventListener("click", function(event) {
+    if (event.target.classList.contains("remove")) {
+        event.target.parentElement.remove();
+    }
+});
