@@ -10,7 +10,7 @@ function createListElement() {
     var li = document.createElement("li");
     var deleteButton = document.createElement("button"); // Creating a delete button
     deleteButton.appendChild(document.createTextNode("Remove")); // Text for the delete button
-    deleteButton.classList.add("remove"); // Adding a class for styling
+    deleteButton.classList.add("Completado"); // Adding a class for styling
     deleteButton.addEventListener("click", removeItem); // Adding click event to the delete button
     li.appendChild(document.createTextNode(input.value + "    "));
     li.appendChild(deleteButton); // Appending the delete button to the list item
