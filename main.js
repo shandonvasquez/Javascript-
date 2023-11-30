@@ -1,45 +1,63 @@
-var button = document.getElementById("enter");
-var input = document.getElementById("userinput");
-var ul = document.querySelector("ul");
-
-function inputLength() {
-    return input.value.length;
-}
-
-function createListElement() {
-    var li = document.createElement("li");
-    var deleteButton = document.createElement("button"); // Creating a delete button
-    deleteButton.appendChild(document.createTextNode("Remove")); // Text for the delete button
-    deleteButton.classList.add("Completado"); // Adding a class for styling
-    deleteButton.addEventListener("click", removeItem); // Adding click event to the delete button
-    li.appendChild(document.createTextNode(input.value + "    "));
-    li.appendChild(deleteButton); // Appending the delete button to the list item
-    ul.appendChild(li);
-    input.value = "";
-}
-
-function addListAfterClick() {
-    if (inputLength() > 0) {
-        createListElement();
+// IEFE
+(() => { 
+    // state variables
+    let toDoListArray = [];
+    // ui variables
+    const form = document.querySelector(".form"); 
+    const input = form.querySelector(".form__input");
+    const ul = document.querySelector(".toDoList"); 
+  
+    // event listeners
+    form.addEventListener('submit', e => {
+      // prevent default behaviour - Page reload
+      e.preventDefault();
+      // give item a unique ID
+      let itemId = String(Date.now());
+      // get/assign input value
+      let toDoItem = input.value;
+      //pass ID and item into functions
+      addItemToDOM(itemId , toDoItem);
+      addItemToArray(itemId, toDoItem);
+      // clear the input box. (this is default behaviour but we got rid of that)
+      input.value = '';
+    });
+    
+    ul.addEventListener('click', e => {
+      let id = e.target.getAttribute('data-id')
+      if (!id) return // user clicked in something else      
+      //pass id through to functions
+      removeItemFromDOM(id);
+      removeItemFromArray(id);
+    });
+    
+    // functions 
+    function addItemToDOM(itemId, toDoItem) {    
+      // create an li
+      const li = document.createElement('li')
+      li.setAttribute("data-id", itemId);
+      // add toDoItem text to li
+      li.innerText = toDoItem
+      // add li to the DOM
+      ul.appendChild(li);
     }
-}
-
-function addListAfterKeypress(event) {
-    if (inputLength() > 0 && event.keyCode === 13) {
-        createListElement();
+    
+    function addItemToArray(itemId, toDoItem) {
+      // add item to array as an object with an ID so we can find and delete it later
+      toDoListArray.push({ itemId, toDoItem});
+      console.log(toDoListArray)
     }
-}
-
-function removeItem() {
-    this.parentElement.remove();
-}
-
-button.addEventListener("click", addListAfterClick);
-input.addEventListener("keypress", addListAfterKeypress);
-
-// Event listener for newly added items for removal
-ul.addEventListener("click", function(event) {
-    if (event.target.classList.contains("remove")) {
-        event.target.parentElement.remove();
+    
+    function removeItemFromDOM(id) {
+      // get the list item by data ID
+      var li = document.querySelector('[data-id="' + id + '"]');
+      // remove list item
+      ul.removeChild(li);
     }
-});
+    
+    function removeItemFromArray(id) {
+      // create a new toDoListArray with all li's that don't match the ID
+      toDoListArray = toDoListArray.filter(item => item.itemId !== id);
+      console.log(toDoListArray);
+    }
+    
+  })();

@@ -6,16 +6,28 @@
 </head>
  <link rel="stylesheet" href="style.css" />
 <body>
- <div class="container">
-  <h1>Shopping List</h1> <br>
-  <p id="first">Get it done today</p> <br>
-<div class="additems">
-  <input type="text" id="userinput" placeholder="Enter items">
-  <button id="enter" class="enter">Enter</button>
-</div>
-  <ul>
-  </ul>
-</div>
+  <section class="container">
+    <div class="heading">
+      <img class="heading__img" src="./check.png">
+      <h1 class="heading__title">To-Do List</h1>
+    </div>
+    <form class="form">
+      <div>
+        <label class="form__label" for="todo">~ Today I need to ~</label>
+        <input class="form__input"
+             type="text" 
+             id="todo" 
+             name="to-do"
+             size="30"
+             required>
+        <button class="button"><span>Submit</span></button>
+      </div>
+    </form>
+    <div>
+      <ul class="toDoList">
+      </ul>
+    </div>
+  </section>
   <script src="main.js"></script>
 </body>
 </html>
