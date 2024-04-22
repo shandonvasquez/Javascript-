@@ -1,0 +1,54 @@
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+/* Style for the .App component */
+.App {
+  background-color: rgb(250, 235, 213);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.app {
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.webDeveloper {
+  height: 300px;
+}
+
+/* Header styles */
+.header {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px; /* Add padding as needed */
+  background-color: rgb(146, 139, 126); /* Set your desired background color */
+  color: white; /* Set your desired text color */
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+  .header {
+    /* Stack items vertically on smaller screens */
+    gap: 10px; /* Adjust the gap between items */
+  }
+}
+
+/* Canvas styles */
+canvas {
+  background: black;
+  height: 5vh; /* Set canvas height to 10% of the viewport height */
+  width: 100%;
+}
